@@ -1,0 +1,6 @@
+react navigation
+gesture handler
+reanimated 
+mobx state tree
+@robinbobin/react-native-google-drive-api-wrapper
+react-native-flash-message
