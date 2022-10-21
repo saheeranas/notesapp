@@ -38,20 +38,10 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
         } else {
           tempId = uuidv4();
         }
-        console.log(tempId);
         const temp = store.findEntryByDate(tempId);
         if (temp.length) {
           setActive(temp[0]);
           setInputData(temp[0].desc);
-        } else {
-          let newItem = {
-            _id: uuidv4(),
-            date: dayjs().format('YYYY-MM-DD'),
-            desc: '',
-            createdAt: dayjs().valueOf(),
-            modifiedAt: dayjs().valueOf(),
-          };
-          setActive(newItem);
         }
         navigation.setParams({id: null});
       });

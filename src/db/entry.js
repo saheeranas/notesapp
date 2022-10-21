@@ -31,21 +31,12 @@ const readEntriesFromDB = () => {
 
 // Add
 const addEntryToDB = item => {
-  const entries = realm.objects('Entry');
-  const res = entries.filtered('date == $0', item.date);
-
-  if (res.length) {
-    // console.warn('ADD: Already exists');
-    return;
-  }
-
   let entry;
   realm.write(() => {
     entry = realm.create('Entry', {
       ...item,
       _id: item._id,
     });
-    // console.log(`created entry: ${entry.date} `);
   });
 };
 

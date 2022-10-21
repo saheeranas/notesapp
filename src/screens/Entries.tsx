@@ -10,6 +10,7 @@ import {MSTContext} from '../mst';
 
 import {EntriesType} from '../types/types';
 import {Layout} from '../components/Layout';
+import {Search} from '../components/Form';
 import EntryCard from '../components/EntryCard';
 import NoData from '../components/NoData';
 import FAB from '../components/FAB';
@@ -37,6 +38,8 @@ import FAB from '../components/FAB';
 
 const Entries: React.FC<EntriesType> = observer(({navigation}) => {
   const store = useContext(MSTContext);
+
+  const [value, setValue] = useState('');
 
   const [isRefreshing, setRefreshing] = useState(false);
 
@@ -75,16 +78,22 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
     );
   };
 
+  let data = store.entries.filter(e => e.desc.includes(value));
+
   return (
     <Layout>
-      <FAB onPress={navigateToDetail} />
+      <Search
+        placeholder="Search Notes"
+        value={value}
+        onChangeText={nextValue => setValue(nextValue)}
+      />
       <List
         style={styles.list}
         contentContainerStyle={styles.contentContainerStyle}
         numColumns={2}
         columnWrapperStyle={{justifyContent: 'space-between'}}
-        data={store.entries.slice()}
-        extraData={toJS(store.entries)}
+        data={data.slice()}
+        extraData={toJS(data)}
         renderItem={renderItem}
         ItemSeparatorComponent={Divider}
         refreshing={isRefreshing}
@@ -93,6 +102,7 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
           <NoData title="Add a new entry by pressing + button" />
         }
       />
+      <FAB onPress={navigateToDetail} />
     </Layout>
   );
 });

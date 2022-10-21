@@ -4,7 +4,7 @@ import {Button} from '@ui-kitten/components';
 
 const FAB = (props: any) => {
   return (
-    <Button style={styles.fab} {...props}>
+    <Button style={styles.fab} {...props} onPress={() => props.onPress()}>
       Add
     </Button>
   );
