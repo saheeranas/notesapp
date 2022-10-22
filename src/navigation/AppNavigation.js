@@ -42,17 +42,17 @@ const AppNavigation = observer(() => {
         <Stack.Screen
           name="Entries"
           component={Entries}
-          options={{tabBarLabel: 'Notes'}}
+          options={{tabBarLabel: 'Notes', headerBackBtnShown: false}}
         />
         <Stack.Screen
           name="EntrySingle"
           component={EntrySingle}
-          options={{tabBarLabel: 'EntrySingle'}}
+          options={{tabBarLabel: 'EntrySingle', headerBackBtnShown: true}}
         />
         <Stack.Screen
           name="Settings"
           component={Settings}
-          options={{tabBarLabel: 'Settings'}}
+          options={{tabBarLabel: 'Settings', headerBackBtnShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

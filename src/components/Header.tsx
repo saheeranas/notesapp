@@ -1,4 +1,5 @@
 import React from 'react';
+import {Pressable} from 'react-native';
 import {
   Icon,
   TopNavigation,
@@ -8,7 +9,9 @@ import {
 
 import {HeaderType} from '../types/types';
 
-const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
+const BackIcon = () => (
+  <Icon style={{width: 20, height: 20}} name="arrow-back" fill="#000" />
+);
 
 const Header: React.FC<HeaderType> = ({
   title = 'Diary',
@@ -24,7 +27,7 @@ const Header: React.FC<HeaderType> = ({
 
   return (
     <TopNavigation
-      accessoryLeft={hideBack ? null : BackAction}
+      accessoryLeft={hideBack ? undefined : BackAction}
       title={Title}
       alignment="center"
       style={style}

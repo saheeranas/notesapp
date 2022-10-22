@@ -14,17 +14,19 @@ import AppNavigation from './src/navigation/AppNavigation';
 const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <MSTContext.Provider value={rootStore}>
-          <SafeAreaProvider>
+      <>
+        <IconRegistry icons={EvaIconsPack} />
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <MSTContext.Provider value={rootStore}>
+            {/* <SafeAreaProvider> */}
             <AppNavigation />
             {/* <View>
           <Text>safdf</Text>
         </View> */}
-          </SafeAreaProvider>
-        </MSTContext.Provider>
-      </ApplicationProvider>
+            {/* </SafeAreaProvider> */}
+          </MSTContext.Provider>
+        </ApplicationProvider>
+      </>
     </GestureHandlerRootView>
   );
 };
