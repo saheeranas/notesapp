@@ -18,6 +18,7 @@ import {MSTContext} from '../mst';
 
 import {EntrySingleType} from '../types/types';
 import {Layout} from '../components/Layout';
+import Header from '../components/Header';
 
 const initialText = '';
 
@@ -108,53 +109,56 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
 
     return (
       <Layout level="1">
+        <Header
+          navigation={navigation}
+          title=""
+          onPressMenu={() => console.log('here')}
+        />
         <ScrollView contentContainerStyle={styles.scrollview}>
-          <Card>
-            <View style={styles.inner}>
-              {editable ? (
-                <TextInput
-                  autoFocus
-                  value={inputData}
-                  style={styles.textArea}
-                  multiline={true}
-                  onChangeText={(text: string) => setInputData(text)}
-                  onBlur={addEntry}
-                />
-              ) : (
-                <TouchableOpacity onPress={() => setEditable(true)}>
-                  <View style={styles.textWrapper}>
-                    <Text>{inputData ? inputData : 'Tap to Edit'}</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
+          <View style={styles.inner}>
+            {editable ? (
+              <TextInput
+                autoFocus
+                value={inputData}
+                style={styles.textArea}
+                multiline={true}
+                onChangeText={(text: string) => setInputData(text)}
+                onBlur={addEntry}
+              />
+            ) : (
+              <TouchableOpacity onPress={() => setEditable(true)}>
+                <View style={styles.textWrapper}>
+                  <Text>{inputData ? inputData : 'Tap to Edit'}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
 
-              {/* {active && (
+            {/* {active && (
                 <Text style={styles.statusText}>
                   Last updated:{' '}
                   {dayjs(active.modifiedAt).format('DD/MM/YYYY hh:mm A')}
                 </Text>
               )} */}
 
-              <View style={styles.btnWrp}>
-                {editable && (
-                  <Button
-                    size="small"
-                    status="primary"
-                    style={[styles.btn, styles.btnSave]}
-                    onPress={addEntry}>
-                    Save
-                  </Button>
-                )}
+            <View style={styles.btnWrp}>
+              {editable && (
                 <Button
                   size="small"
-                  style={styles.btn}
-                  status="danger"
-                  onPress={deleteEntry}>
-                  Discard
+                  status="primary"
+                  style={[styles.btn, styles.btnSave]}
+                  onPress={addEntry}>
+                  Save
                 </Button>
-              </View>
+              )}
+              <Button
+                size="small"
+                style={styles.btn}
+                status="danger"
+                onPress={deleteEntry}>
+                Discard
+              </Button>
             </View>
-          </Card>
+          </View>
         </ScrollView>
       </Layout>
     );
@@ -171,29 +175,30 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   textWrapper: {
-    minHeight: 180,
-    paddingHorizontal: 10,
+    minHeight: 250,
+    paddingHorizontal: 16,
     paddingVertical: 10,
     borderWidth: 0,
     borderRadius: 8,
     textAlignVertical: 'top',
     marginBottom: 20,
-    backgroundColor: '#E9ECF2',
+    backgroundColor: 'transparent',
     fontSize: 14,
   },
   textArea: {
     height: 250,
-    paddingHorizontal: 10,
+    paddingHorizontal: 16,
     borderWidth: 0,
     borderRadius: 8,
     textAlignVertical: 'top',
     marginBottom: 20,
-    backgroundColor: '#E9ECF2',
+    backgroundColor: 'transparent',
     fontSize: 14,
   },
   btnWrp: {
     // flexDirection: 'row',
     // justifyContent: 'space-between',
+    paddingHorizontal: 16,
   },
   btn: {
     marginBottom: 10,

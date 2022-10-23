@@ -19,12 +19,12 @@ export const Search = (props: SearchProps) => {
 const styles = StyleSheet.create({
   textarea: {
     borderWidth: 0,
-    backgroundColor: 'cyan',
   },
   // Search
   searchCard: {
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     paddingHorizontal: 16,
-    paddingVertical: 5,
+    paddingTop: 0,
+    paddingBottom: 3,
   },
 });

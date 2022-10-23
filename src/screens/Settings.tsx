@@ -14,6 +14,7 @@ import {Divider, Text, Avatar, Toggle, Icon, Card} from '@ui-kitten/components';
 import {MSTContext} from '../mst';
 import {SettingsType} from '../types/types';
 import {Layout} from '../components/Layout';
+import Header from '../components/Header';
 import ProgressBar from '../components/ProgressBar';
 import {SettingsMenuItem} from '../components/SettingsMenu';
 
@@ -89,6 +90,7 @@ const Settings: React.FC<SettingsType> = observer(({navigation}) => {
 
   return (
     <Layout>
+      <Header navigation={navigation} title="Settings" />
       <ScrollView contentContainerStyle={styles.scrollview}>
         <Card>
           <View style={styles.profileCard}>

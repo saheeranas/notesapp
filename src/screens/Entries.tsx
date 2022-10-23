@@ -1,15 +1,16 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {observer, Observer} from 'mobx-react-lite';
 import {toJS} from 'mobx';
 
-import {List, Divider, Icon, Button} from '@ui-kitten/components';
+import {List, Divider} from '@ui-kitten/components';
 
 // import {readEntriesFromDB, deleteAllEntriesFromDB} from '../db/entry';
 import {MSTContext} from '../mst';
 
 import {EntriesType} from '../types/types';
 import {Layout} from '../components/Layout';
+import Header from '../components/Header';
 import {Search} from '../components/Form';
 import EntryCard from '../components/EntryCard';
 import NoData from '../components/NoData';
@@ -82,6 +83,13 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
 
   return (
     <Layout>
+      <Header
+        navigation={navigation}
+        title="Notes"
+        hideBack={true}
+        onPressMenu={() => navigation.navigate('Settings')}
+      />
+
       <Search
         placeholder="Search Notes"
         value={value}
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
   list: {
     paddingTop: 20,
     paddingHorizontal: 16,
-    backgroundColor: '#E9ECF2',
+    backgroundColor: '#E4EAF2',
   },
   contentContainerStyle: {
     paddingBottom: 100,

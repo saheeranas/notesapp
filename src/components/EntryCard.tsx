@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   desc: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#333333',
     flex: 1,
     maxHeight: 40,

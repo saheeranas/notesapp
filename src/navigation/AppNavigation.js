@@ -29,15 +29,16 @@ const AppNavigation = observer(() => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: ({navigation, route, options}) => {
-            return (
-              <Header
-                title={options.tabBarLabel}
-                navigation={navigation}
-                hideBack={!options.headerBackBtnShown}
-              />
-            );
-          },
+          // header: ({navigation, route, options}) => {
+          //   return (
+          //     <Header
+          //       title={options.tabBarLabel}
+          //       navigation={navigation}
+          //       hideBack={!options.headerBackBtnShown}
+          //     />
+          //   );
+          // },
+          headerShown: false,
         }}>
         <Stack.Screen
           name="Entries"

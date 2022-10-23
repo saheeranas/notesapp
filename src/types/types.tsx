@@ -3,10 +3,11 @@
  */
 
 export interface HeaderType {
-  hideBack: boolean;
+  hideBack?: boolean;
   navigation: any;
   title: string;
-  style: any;
+  style?: any;
+  onPressMenu?: () => void;
 }
 
 /**

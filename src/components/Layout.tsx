@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   layout: {
     position: 'relative',
     flex: 1,
-    backgroundColor: '#E9ECF2',
+    // backgroundColor: 'red',
+    backgroundColor: '#E4EAF2',
   },
 });
