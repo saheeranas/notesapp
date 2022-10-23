@@ -11,7 +11,7 @@ export const TextArea = forwardRef((props: any, ref) => {
 export const Search = (props: SearchProps) => {
   return (
     <View style={styles.searchCard}>
-      <Input {...props} />
+      <Input style={styles.searchInput} {...props} />
     </View>
   );
 };
@@ -26,5 +26,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 0,
     paddingBottom: 3,
+  },
+  searchInput: {
+    backgroundColor: '#ececec',
   },
 });

@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {observer, Observer} from 'mobx-react-lite';
 import {toJS} from 'mobx';
 
-import {List, Divider} from '@ui-kitten/components';
+import {List, Divider, Icon} from '@ui-kitten/components';
 
 // import {readEntriesFromDB, deleteAllEntriesFromDB} from '../db/entry';
 import {MSTContext} from '../mst';
@@ -61,6 +61,10 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
 
   const navigateToDetail = (id = null) => {
     navigation.navigate('EntrySingle', {id});
+  };
+
+  const navigateToSettings = () => {
+    navigation.navigate('Settings');
   };
 
   // console.log(store);
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
   list: {
     paddingTop: 20,
     paddingHorizontal: 16,
-    backgroundColor: '#E4EAF2',
+    backgroundColor: '#F4F4F4',
   },
   contentContainerStyle: {
     paddingBottom: 100,
