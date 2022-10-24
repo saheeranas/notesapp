@@ -9,8 +9,6 @@ export const EntrySchema = {
   properties: {
     // _id: uuid4()
     _id: 'string',
-    // date: 2021-11-15
-    date: 'string',
     // desc: Random strings
     desc: 'string',
     // createdAt: UNIX timestamp
@@ -25,7 +23,7 @@ export const EntrySchema = {
 
 // Read All
 const readEntriesFromDB = () => {
-  const entries = realm.objects('Entry').sorted('date', true);
+  const entries = realm.objects('Entry').sorted('modifiedAt', true);
   return entries;
 };
 
@@ -43,7 +41,7 @@ const addEntryToDB = item => {
 // Update
 const updateEntryToDB = item => {
   const entries = realm.objects('Entry');
-  const res = entries.filtered('date == $0', item.date);
+  const res = entries.filtered('_id == $0', item._id);
   let entry;
 
   if (res.length) {

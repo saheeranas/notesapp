@@ -91,7 +91,6 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
         if (!active) {
           store.addEntry({
             _id: uuidv4(),
-            date: dayjs(new Date()).format('YYYY-MM-DD'),
             desc: inputData,
             createdAt: dayjs(new Date()).valueOf(),
             modifiedAt: dayjs(new Date()).valueOf(),
@@ -99,7 +98,6 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
         } else {
           store.updateEntry({
             _id: active._id,
-            date: active.date,
             createdAt: active.createdAt,
             desc: inputData,
             modifiedAt: dayjs(new Date()).valueOf(),
@@ -119,6 +117,23 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
           title=""
           onPressMenu={() => setMenuVisible(true)}
         />
+        {active && (
+          <View style={styles.statusTextWrp}>
+            <Text style={styles.statusText}>
+              {dayjs(active.modifiedAt).format('DD/MM/YYYY hh:mm A')}
+            </Text>
+            {editable && (
+              <Button
+                size="tiny"
+                status="warning"
+                appearance="outline"
+                style={[styles.btn, styles.btnSave]}
+                onPress={addEntry}>
+                Save
+              </Button>
+            )}
+          </View>
+        )}
         <ScrollView contentContainerStyle={styles.scrollview}>
           <View style={styles.inner}>
             {editable ? (
@@ -138,14 +153,7 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
               </TouchableOpacity>
             )}
 
-            {/* {active && (
-                <Text style={styles.statusText}>
-                  Last updated:{' '}
-                  {dayjs(active.modifiedAt).format('DD/MM/YYYY hh:mm A')}
-                </Text>
-              )} */}
-
-            <View style={styles.btnWrp}>
+            {/* <View style={styles.btnWrp}>
               {editable && (
                 <Button
                   size="small"
@@ -155,14 +163,7 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
                   Save
                 </Button>
               )}
-              {/* <Button
-                size="small"
-                style={styles.btn}
-                status="danger"
-                onPress={deleteEntry}>
-                Discard
-              </Button> */}
-            </View>
+            </View> */}
           </View>
         </ScrollView>
         {/* Menu */}
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
   },
   textWrapper: {
     minHeight: 250,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     paddingVertical: 10,
     borderWidth: 0,
     borderRadius: 8,
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
   },
   textArea: {
     height: 250,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     borderWidth: 0,
     borderRadius: 8,
     textAlignVertical: 'top',
@@ -227,7 +228,18 @@ const styles = StyleSheet.create({
   btn: {
     marginBottom: 10,
   },
-  btnSave: {},
+  btnSave: {
+    marginBottom: 0,
+    // width: 10,
+    // height: 5,
+    padding: 0,
+  },
+  statusTextWrp: {
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   statusText: {
     fontSize: 11,
     marginBottom: 10,

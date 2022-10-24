@@ -9,8 +9,11 @@ interface EntryCardProps {
   onPress: () => void;
 }
 
-const EntryCard: React.FC<EntryCardProps> = ({item: {desc, date}, onPress}) => {
-  const dayStr = dayjs(date).format('MMM D h:mm A');
+const EntryCard: React.FC<EntryCardProps> = ({
+  item: {desc, modifiedAt},
+  onPress,
+}) => {
+  const dayStr = dayjs(modifiedAt).format('MMM D h:mm A');
   return (
     <Pressable style={styles.listItem} onPress={onPress}>
       <View style={styles.listItemInner}>

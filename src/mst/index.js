@@ -22,7 +22,7 @@ const RootStore = types
   })
   .views(self => ({
     getData() {
-      return self.entries.sort((a, b) => b.date - a.date);
+      return self.entries.sort((a, b) => b.modifiedAt - a.modifiedAt);
     },
     findEntryByDate(_id) {
       return self.entries.filter(e => e._id === _id);

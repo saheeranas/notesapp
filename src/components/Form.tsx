@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   // Search
   searchCard: {
     backgroundColor: 'transparent',
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     paddingTop: 0,
     paddingBottom: 3,
   },
