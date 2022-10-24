@@ -12,7 +12,7 @@ import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 import dayjs from 'dayjs';
 
-import {Card, Button, Text} from '@ui-kitten/components';
+import {Button, Text, Modal, Menu, MenuItem, Icon} from '@ui-kitten/components';
 
 import {MSTContext} from '../mst';
 
@@ -20,11 +20,16 @@ import {EntrySingleType} from '../types/types';
 import {Layout} from '../components/Layout';
 import Header from '../components/Header';
 
+const DeleteIcon = () => (
+  <Icon name="trash-2-outline" fill="red" style={styles.menuIcon} />
+);
+
 const initialText = '';
 
 const EntrySingle: React.FC<EntrySingleType> = observer(
   ({route, navigation}) => {
     const store = useContext(MSTContext);
+    const [menuVisible, setMenuVisible] = useState(false);
     const editorRef = useRef(null);
     const [inputData, setInputData] = React.useState(initialText);
     const [active, setActive] = useState<any>(null);
@@ -112,7 +117,7 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
         <Header
           navigation={navigation}
           title=""
-          onPressMenu={() => console.log('here')}
+          onPressMenu={() => setMenuVisible(true)}
         />
         <ScrollView contentContainerStyle={styles.scrollview}>
           <View style={styles.inner}>
@@ -150,16 +155,35 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
                   Save
                 </Button>
               )}
-              <Button
+              {/* <Button
                 size="small"
                 style={styles.btn}
                 status="danger"
                 onPress={deleteEntry}>
                 Discard
-              </Button>
+              </Button> */}
             </View>
           </View>
         </ScrollView>
+        {/* Menu */}
+        <Modal
+          visible={menuVisible}
+          backdropStyle={styles.backdrop}
+          onBackdropPress={() => setMenuVisible(false)}>
+          <View style={styles.card}>
+            <Menu>
+              <MenuItem
+                title="Delete"
+                accessoryLeft={DeleteIcon}
+                onPress={() => {
+                  setMenuVisible(false);
+                  deleteEntry();
+                }}
+              />
+            </Menu>
+          </View>
+        </Modal>
+        {/* end Menu */}
       </Layout>
     );
   },
@@ -209,4 +233,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontStyle: 'italic',
   },
+  // modal menu
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  card: {
+    padding: 5,
+    backgroundColor: '#fff',
+    width: 280,
+    borderRadius: 10,
+  },
+  menuIcon: {width: 20, height: 20},
 });

@@ -3,7 +3,14 @@ import {StyleSheet, View} from 'react-native';
 import {observer, Observer} from 'mobx-react-lite';
 import {toJS} from 'mobx';
 
-import {List, Divider, Icon} from '@ui-kitten/components';
+import {
+  List,
+  Divider,
+  Icon,
+  Modal,
+  Menu,
+  MenuItem,
+} from '@ui-kitten/components';
 
 // import {readEntriesFromDB, deleteAllEntriesFromDB} from '../db/entry';
 import {MSTContext} from '../mst';
@@ -15,6 +22,10 @@ import {Search} from '../components/Form';
 import EntryCard from '../components/EntryCard';
 import NoData from '../components/NoData';
 import FAB from '../components/FAB';
+
+const SettingsIcon = () => (
+  <Icon name="settings-outline" fill="#ccc" style={styles.menuIcon} />
+);
 
 // const AddIcon = (props: any) => <Icon {...props} name="plus-outline" />;
 
@@ -39,6 +50,7 @@ import FAB from '../components/FAB';
 
 const Entries: React.FC<EntriesType> = observer(({navigation}) => {
   const store = useContext(MSTContext);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const [value, setValue] = useState('');
 
@@ -91,7 +103,7 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
         navigation={navigation}
         title="Notes"
         hideBack={true}
-        onPressMenu={() => navigation.navigate('Settings')}
+        onPressMenu={() => setMenuVisible(true)}
       />
 
       <Search
@@ -115,6 +127,25 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
         }
       />
       <FAB onPress={navigateToDetail} />
+      {/* Menu */}
+      <Modal
+        visible={menuVisible}
+        backdropStyle={styles.backdrop}
+        onBackdropPress={() => setMenuVisible(false)}>
+        <View style={styles.card}>
+          <Menu>
+            <MenuItem
+              title="Settings"
+              accessoryLeft={SettingsIcon}
+              onPress={() => {
+                setMenuVisible(false);
+                navigateToSettings();
+              }}
+            />
+          </Menu>
+        </View>
+      </Modal>
+      {/* end Menu */}
     </Layout>
   );
 });
@@ -144,4 +175,15 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 60 / 2,
   },
+  // modal menu
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  card: {
+    padding: 5,
+    backgroundColor: '#fff',
+    width: 280,
+    borderRadius: 10,
+  },
+  menuIcon: {width: 20, height: 20},
 });
