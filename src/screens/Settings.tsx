@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   scrollview: {
     paddingTop: 20,
     paddingBottom: 100,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
   },
 
   profileCard: {
