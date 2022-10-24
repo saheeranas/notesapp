@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
+import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Icon} from '@ui-kitten/components';
@@ -26,7 +27,7 @@ const AppNavigation = observer(() => {
   const store = React.useContext(MSTContext);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={() => RNBootSplash.hide()}>
       <Stack.Navigator
         screenOptions={{
           // header: ({navigation, route, options}) => {
