@@ -153,13 +153,13 @@ const Settings: React.FC<SettingsType> = observer(({navigation}) => {
             {isLogined && (
               <SettingsMenuItem label="Logout" onPress={handleLogout} />
             )}
-            {isSecured && (
+            {/* {isSecured && (
               <SettingsMenuItem
                 label="Lock"
                 icon="lock-outline"
                 onPress={() => store.user.toggleUnlocked(false)}
               />
-            )}
+            )} */}
           </View>
         </Card>
       </ScrollView>
