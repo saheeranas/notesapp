@@ -1,9 +1,7 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
-import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Icon} from '@ui-kitten/components';
 import {observer} from 'mobx-react-lite';
 
 import {MSTContext} from '../mst';
@@ -19,26 +17,15 @@ import Entries from '../screens/Entries';
 import Settings from '../screens/Settings';
 import EntrySingle from '../screens/EntrySingle';
 
-import Header from '../components/Header';
-
 const Stack = createStackNavigator();
 
 const AppNavigation = observer(() => {
   const store = React.useContext(MSTContext);
 
   return (
-    <NavigationContainer onReady={() => RNBootSplash.hide()}>
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          // header: ({navigation, route, options}) => {
-          //   return (
-          //     <Header
-          //       title={options.tabBarLabel}
-          //       navigation={navigation}
-          //       hideBack={!options.headerBackBtnShown}
-          //     />
-          //   );
-          // },
           headerShown: false,
         }}>
         <Stack.Screen

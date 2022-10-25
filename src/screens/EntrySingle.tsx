@@ -117,23 +117,26 @@ const EntrySingle: React.FC<EntrySingleType> = observer(
           title=""
           onPressMenu={() => setMenuVisible(true)}
         />
-        {active && (
-          <View style={styles.statusTextWrp}>
-            <Text style={styles.statusText}>
-              {dayjs(active.modifiedAt).format('DD/MM/YYYY hh:mm A')}
-            </Text>
-            {editable && (
-              <Button
-                size="tiny"
-                status="warning"
-                appearance="outline"
-                style={[styles.btn, styles.btnSave]}
-                onPress={addEntry}>
-                Save
-              </Button>
+        <View style={styles.statusTextWrp}>
+          <View>
+            {active && (
+              <Text style={styles.statusText}>
+                {dayjs(active.modifiedAt).format('DD/MM/YYYY hh:mm A')}
+              </Text>
             )}
           </View>
-        )}
+          {editable && (
+            <Button
+              size="tiny"
+              status="warning"
+              appearance="outline"
+              style={[styles.btn, styles.btnSave]}
+              onPress={addEntry}>
+              Save
+            </Button>
+          )}
+        </View>
+
         <ScrollView contentContainerStyle={styles.scrollview}>
           <View style={styles.inner}>
             {editable ? (
