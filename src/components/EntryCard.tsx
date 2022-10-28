@@ -6,12 +6,17 @@ import dayjs from 'dayjs';
 
 import {EntrySnapOutType} from '../types/types';
 
-interface EntryCardProps extends Pick<EntrySnapOutType, 'desc' | 'modifiedAt'> {
-  onPress: () => void;
+interface EntryCardProps
+  extends Partial<Pick<EntrySnapOutType, 'desc' | 'modifiedAt'>> {
+  onPress?: () => void;
 }
 
-const EntryCard: React.FC<EntryCardProps> = ({desc, modifiedAt, onPress}) => {
-  const dayStr = dayjs(modifiedAt).format('MMM D h:mm A');
+const EntryCard: React.FC<EntryCardProps> = ({
+  desc = '',
+  modifiedAt,
+  onPress,
+}) => {
+  const dayStr = dayjs(modifiedAt).format('MMM D h:mm A') || '';
   return (
     <Pressable style={styles.listItem} onPress={onPress}>
       <View style={styles.listItemInner}>
