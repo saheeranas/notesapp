@@ -2,6 +2,7 @@ import {v4 as uuidv4} from 'uuid';
 import dayjs from 'dayjs';
 import {realm} from './index';
 import rootStore from '../mst';
+import {EntrySnapOutType} from '../types/types';
 
 // Declaration
 export const EntrySchema = {
@@ -23,37 +24,43 @@ export const EntrySchema = {
 
 // Read All
 const readEntriesFromDB = () => {
-  const entries = realm.objects('Entry').sorted('modifiedAt', true);
+  const entries = realm
+    .objects<EntrySnapOutType>('Entry')
+    .sorted('modifiedAt', true);
   return entries;
 };
 
 // Add
-const addEntryToDB = item => {
+const addEntryToDB = (item: EntrySnapOutType) => {
   let entry;
+
   realm.write(() => {
+    // @ts-ignore
     entry = realm.create('Entry', {
       ...item,
       _id: item._id,
     });
   });
+  return entry;
 };
 
 // Update
-const updateEntryToDB = item => {
-  const entries = realm.objects('Entry');
+const updateEntryToDB = (item: EntrySnapOutType) => {
+  const entries = realm.objects<EntrySnapOutType>('Entry');
   const res = entries.filtered('_id == $0', item._id);
   let entry;
 
   if (res.length) {
-    // console.log('UPDATE: Already exists');
+    // console.log('UPDATE: If Already exists');
     realm.write(() => {
       res[0].desc = item.desc;
       res[0].modifiedAt = dayjs(new Date()).valueOf();
       res[0].deleted = false;
     });
   } else {
-    // console.log('UPDATE: New');
+    // console.log('UPDATE: Else, New Entry');
     realm.write(() => {
+      // @ts-ignore
       entry = realm.create('Entry', {
         ...item,
         _id: uuidv4(),
@@ -63,11 +70,12 @@ const updateEntryToDB = item => {
       // console.log(`Created entry: ${entry.date} `);
     });
   }
+  return entry;
 };
 
 // Delete item (Soft)
-const softDeleteOneEntryFromDB = item => {
-  const res = realm.objectForPrimaryKey('Entry', item._id);
+const softDeleteOneEntryFromDB = (item: EntrySnapOutType) => {
+  const res = realm.objectForPrimaryKey<EntrySnapOutType>('Entry', item._id);
   if (res) {
     realm.write(() => {
       res.deleted = true;
@@ -77,8 +85,11 @@ const softDeleteOneEntryFromDB = item => {
 };
 
 // Delete item (Hard)
-const deleteOneEntryFromDB = item => {
-  const resItem = realm.objectForPrimaryKey('Entry', item._id);
+const deleteOneEntryFromDB = (item: EntrySnapOutType) => {
+  const resItem = realm.objectForPrimaryKey<EntrySnapOutType>(
+    'Entry',
+    item._id,
+  );
   realm.write(() => {
     realm.delete(resItem);
   });
@@ -89,7 +100,6 @@ const deleteAllEntriesFromDB = () => {
   realm.write(() => {
     // Delete all objects from the realm.
     realm.deleteAll();
-    // console.log('Cleared');
   });
 };
 
@@ -98,12 +108,12 @@ const deleteAllEntriesFromDB = () => {
  * @param {*} data - Syncable data from Google Drive and Local combined
  * TODO: Delete functionality
  */
-const importToDBFromJSON = data => {
+const importToDBFromJSON = (data: any) => {
   let dataFromDB = readEntriesFromDB();
   // console.log('syncable Data:', data);
   // console.log('DB Data:', dataFromDB);
   realm.write(() => {
-    data.entries.forEach(obj => {
+    data.entries.forEach((obj: any) => {
       let itemFoundInDB = dataFromDB.find(item => item._id === obj._id);
       if (!itemFoundInDB) {
         // If does not exist in DB, Create

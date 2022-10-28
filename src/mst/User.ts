@@ -1,5 +1,6 @@
 import {types} from 'mobx-state-tree';
 import {getUserFromDB, updateUserToDB, clearUserFromDB} from '../db/user';
+import {UserSnapInType} from '../types/types';
 
 const User = types
   .model('User', {
@@ -18,14 +19,16 @@ const User = types
   .actions(self => ({
     populateUserFromDB() {
       let itemFromDB = getUserFromDB();
-      if (!itemFromDB) return;
+      if (!itemFromDB) {
+        return 0;
+      }
       let temp = JSON.parse(JSON.stringify(itemFromDB));
       self._id = temp._id;
       self.name = temp.name;
       self.email = temp.email;
       self.photo = temp.photo;
     },
-    updateUser(user) {
+    updateUser(user: UserSnapInType & {id: string}) {
       self._id = user.id;
       self.name = user.name;
       self.email = user.email;
@@ -41,10 +44,10 @@ const User = types
 
       clearUserFromDB();
     },
-    toggleSecurityStatus(status) {
+    toggleSecurityStatus(status: boolean) {
       self.isSecure = status;
     },
-    toggleUnlocked(status) {
+    toggleUnlocked(status: boolean) {
       self.isUnlocked = status;
     },
   }));

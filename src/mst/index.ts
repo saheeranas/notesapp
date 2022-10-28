@@ -6,6 +6,8 @@ import DiaryEntry from './DiaryEntry';
 import User from './User';
 import Settings from './Settings';
 
+import {EntrySnapInType} from '../types/types';
+
 // Realm DB Ops
 import {
   readEntriesFromDB,
@@ -24,7 +26,7 @@ const RootStore = types
     getData() {
       return self.entries.sort((a, b) => b.modifiedAt - a.modifiedAt);
     },
-    findEntryByDate(_id) {
+    findEntryByDate(_id: string) {
       return self.entries.filter(e => e._id === _id);
     },
   }))
@@ -34,18 +36,18 @@ const RootStore = types
       let temp = JSON.parse(JSON.stringify(itemsFromDB));
       // console.log(temp);
       let modifieddata = temp
-        .map(item => {
+        .map((item: EntrySnapInType) => {
           const {deleted, ...rest} = item;
           return deleted ? null : rest;
         })
         .filter(Boolean);
       self.entries = modifieddata;
     },
-    addEntry(entry) {
+    addEntry(entry: EntrySnapInType) {
       self.entries.unshift(entry);
       addEntryToDB(entry);
     },
-    updateEntry(entry) {
+    updateEntry(entry: EntrySnapInType) {
       let pos = self.entries.findIndex(e => e._id === entry._id);
       if (pos >= 0) {
         self.entries.splice(pos, 1, entry);
@@ -54,7 +56,7 @@ const RootStore = types
       }
       updateEntryToDB(entry);
     },
-    deleteEntry(entry) {
+    deleteEntry(entry: EntrySnapInType) {
       softDeleteOneEntryFromDB(entry);
       destroy(entry);
     },
@@ -64,7 +66,6 @@ const rootStore = RootStore.create({
   entries: [
     // {
     //   _id: 'b91289ce-c2fe-43ed-9830-f5cb5f222a7b',
-    //   date: '2021-11-16',
     //   desc: 'lorem ipsum',
     //   createdAt: 1637330913,
     //   modifiedAt: 1637330913,
@@ -84,4 +85,7 @@ const rootStore = RootStore.create({
 });
 
 export default rootStore;
-export const MSTContext = React.createContext(null);
+
+// export interface RootStoreType extends Instance<typeof RootStore> {}
+
+export const MSTContext = React.createContext(rootStore);

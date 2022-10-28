@@ -15,7 +15,7 @@ import {
 // import {readEntriesFromDB, deleteAllEntriesFromDB} from '../db/entry';
 import {MSTContext} from '../mst';
 
-import {EntriesType} from '../types/types';
+import {EntriesProps} from '../types/types';
 import {Layout} from '../components/Layout';
 import Header from '../components/Header';
 import {Search} from '../components/Form';
@@ -27,7 +27,7 @@ const SettingsIcon = () => (
   <Icon name="settings-outline" fill="#ccc" style={styles.menuIcon} />
 );
 
-const Entries: React.FC<EntriesType> = observer(({navigation}) => {
+const Entries = observer(({navigation}: EntriesProps) => {
   const store = useContext(MSTContext);
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -38,6 +38,7 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
   useEffect(() => {
     refreshData();
     refreshOtherData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const refreshData = () => {
@@ -47,7 +48,7 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
   };
 
   const refreshOtherData = () => {
-    store.user.populateUserFromDB();
+    store?.user?.populateUserFromDB();
   };
 
   const navigateToDetail = (id = null) => {
@@ -94,7 +95,7 @@ const Entries: React.FC<EntriesType> = observer(({navigation}) => {
         style={styles.list}
         contentContainerStyle={styles.contentContainerStyle}
         numColumns={2}
-        columnWrapperStyle={{justifyContent: 'space-between'}}
+        columnWrapperStyle={styles.listColumWrpStyle}
         data={data.slice()}
         extraData={toJS(data)}
         renderItem={renderItem}
@@ -139,6 +140,9 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
     backgroundColor: '#F4F4F4',
+  },
+  listColumWrpStyle: {
+    justifyContent: 'space-between',
   },
   contentContainerStyle: {
     paddingBottom: 100,

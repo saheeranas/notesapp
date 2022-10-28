@@ -4,9 +4,8 @@ const Settings = types
   .model('Settings', {
     lastSynced: types.string,
   })
-  .views(self => ({}))
   .actions(self => ({
-    updateLastSynced(status) {
+    updateLastSynced(status: string) {
       self.lastSynced = status;
     },
     removeLastSynced() {

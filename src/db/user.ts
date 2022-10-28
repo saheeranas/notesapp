@@ -1,4 +1,5 @@
 import {realm} from './index';
+import {UserSnapOutType} from '../types/types';
 
 export const UserSchema = {
   name: 'User',
@@ -18,8 +19,8 @@ const getUserFromDB = () => {
 };
 
 // Update user info
-const updateUserToDB = user => {
-  const users = realm.objects('User');
+const updateUserToDB = (user: UserSnapOutType & {id: string}) => {
+  const users = realm.objects<UserSnapOutType>('User');
   const res = users.filtered('_id == $0', user.id);
 
   if (res.length) {

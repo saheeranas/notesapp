@@ -9,6 +9,8 @@ const DiaryEntry = types.model('DiaryEntry', {
   createdAt: types.number,
   // modifiedAt: UNIX timestamp
   modifiedAt: types.number,
+  // deleted: boolean
+  deleted: types.optional(types.boolean, false),
 });
 
 export default DiaryEntry;
