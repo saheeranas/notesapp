@@ -67,8 +67,9 @@ const Entries = observer(({navigation}: EntriesProps) => {
         {() => (
           <EntryCard
             key={`entrycard-${item._id}`}
-            item={item}
             onPress={() => navigateToDetail(item._id)}
+            desc={item.desc}
+            modifiedAt={item.modifiedAt}
           />
         )}
       </Observer>

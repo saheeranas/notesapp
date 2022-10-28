@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Text} from '@ui-kitten/components';
 
 interface NoDataProps {
-  title: string;
+  title?: string;
 }
 
 const NoData = ({title = 'No Data'}: NoDataProps) => {
