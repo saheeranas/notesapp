@@ -1,12 +1,16 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Button, Icon} from '@ui-kitten/components';
+import {Button, Icon, ButtonProps} from '@ui-kitten/components';
+
+interface FABProps extends ButtonProps {
+  onPress: () => void;
+}
 
 const AddIcon = () => (
   <Icon name="plus-outline" style={styles.icon} fill="#fff" />
 );
 
-const FAB = (props: any) => {
+const FAB = (props: FABProps) => {
   return (
     <Button
       style={styles.fab}

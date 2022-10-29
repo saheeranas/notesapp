@@ -2,13 +2,21 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 interface ProgressBarProps {
-  color: string;
-  progress: number;
+  color?: string;
+  progress?: number;
 }
 
-const ProgressBar = ({color = '#34c759', progress = 0}) => {
+const ProgressBar = ({color = '#34c759', progress = 0}: ProgressBarProps) => {
   return (
-    <View style={styles.wrapper}>
+    <View
+      accessible={true}
+      accessibilityRole="progressbar"
+      accessibilityValue={{
+        min: 0,
+        max: 100,
+        now: progress * 100,
+      }}
+      style={styles.wrapper}>
       <View
         style={[
           styles.bar,
