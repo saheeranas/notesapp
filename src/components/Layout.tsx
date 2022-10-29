@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {StyleSheet} from 'react-native';
 import {Layout as UILayout} from '@ui-kitten/components';
 
-export const Layout = ({children}) => {
+interface LayoutProps {
+  children?: ReactNode;
+}
+
+export const Layout = ({children}: LayoutProps) => {
   return <UILayout style={styles.layout}>{children}</UILayout>;
 };
 

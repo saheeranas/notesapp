@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Layout 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    appearance="default"
+    level="1"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
+        Object {
+          "backgroundColor": "#F4F4F4",
+          "flex": 1,
+          "position": "relative",
+        },
+      ]
+    }
+  />
+</View>
+`;
