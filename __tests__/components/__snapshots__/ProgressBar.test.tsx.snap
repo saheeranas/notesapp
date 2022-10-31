@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders ProgressBar 1`] = `
+exports[`renders ProgressBar with default color 1`] = `
 <View
   style={
     Object {
@@ -9,6 +9,15 @@ exports[`renders ProgressBar 1`] = `
   }
 >
   <View
+    accessibilityRole="progressbar"
+    accessibilityValue={
+      Object {
+        "max": 100,
+        "min": 0,
+        "now": 0,
+      }
+    }
+    accessible={true}
     style={
       Object {
         "backgroundColor": "#ccc",

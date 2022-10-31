@@ -10,26 +10,26 @@ import {
 import {HeaderType} from '../types/types';
 
 const BackIcon = () => (
-  <Icon style={{width: 20, height: 20}} name="arrow-back" fill="#000" />
+  <Icon style={styles.icon} name="arrow-back" fill="#000" />
 );
 
 const KebabIcon = () => (
-  <Icon
-    style={{width: 20, height: 20}}
-    name="more-vertical-outline"
-    fill="#000"
-  />
+  <Icon style={styles.icon} name="more-vertical-outline" fill="#000" />
 );
 
 const Header: React.FC<HeaderType> = ({
-  title = 'Diary',
+  title = '',
   navigation,
   hideBack = false,
   style,
   onPressMenu,
 }) => {
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={() => navigation.goBack()} />
+    <TopNavigationAction
+      icon={BackIcon}
+      onPress={() => navigation.goBack()}
+      testID="back_button"
+    />
   );
 
   const MenuButton = () => (
@@ -38,6 +38,7 @@ const Header: React.FC<HeaderType> = ({
       onPress={() => {
         onPressMenu && onPressMenu();
       }}
+      testID="kebab_button"
     />
   );
 
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: 'transparent',
   },
+  icon: {width: 20, height: 20},
 });
 
 export default Header;

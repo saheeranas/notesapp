@@ -11,8 +11,8 @@ import User from '../mst/User';
 
 export interface HeaderType {
   hideBack?: boolean;
-  navigation: any;
-  title: string;
+  navigation?: any;
+  title?: string;
   style?: any;
   onPressMenu?: () => void;
 }

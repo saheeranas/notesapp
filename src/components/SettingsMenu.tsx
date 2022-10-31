@@ -28,18 +28,27 @@ export const SettingsMenuItem: React.FC<SettingsItemProps> = ({
   };
 
   return (
-    <>
+    <View testID="menuItem">
       <TouchableOpacity onPress={onPressHandler}>
         <View style={styles.menuItem}>
           <Text>{label}</Text>
           {rightIcon && (
-            <Icon style={styles.icon} fill="#8F9BB3" name={rightIcon} />
+            <Icon
+              style={styles.icon}
+              fill="#8F9BB3"
+              name={rightIcon}
+              testID="menu_icon"
+            />
           )}
         </View>
         <Divider />
       </TouchableOpacity>
-      {children && toggle && <View style={styles.childrenWrp}>{children}</View>}
-    </>
+      {children && toggle && (
+        <View testID="menuItemChild" style={styles.childrenWrp}>
+          {children}
+        </View>
+      )}
+    </View>
   );
 };
 

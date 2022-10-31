@@ -18,6 +18,7 @@ const FAB = (props: FABProps) => {
       onPress={() => props.onPress()}
       accessoryLeft={AddIcon}
       status="warning"
+      testID="fab_button"
     />
   );
 };
