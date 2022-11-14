@@ -12,7 +12,7 @@ import {observer} from 'mobx-react-lite';
 import {Divider, Text, Avatar, Toggle, Icon, Card} from '@ui-kitten/components';
 
 import {MSTContext} from '../mst';
-import {SettingsType} from '../types/types';
+import {SettingsProps} from '../types/types';
 import {Layout} from '../components/Layout';
 import Header from '../components/Header';
 import ProgressBar from '../components/ProgressBar';
@@ -20,21 +20,23 @@ import {SettingsMenuItem} from '../components/SettingsMenu';
 
 import {useGoogleDrive} from '../utils/GoogleDrive';
 
-const Settings: React.FC<SettingsType> = observer(({navigation}) => {
+const Settings = observer(({navigation}: SettingsProps) => {
   const store = useContext(MSTContext);
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
   const {status, signInWithGoogle, signOut, exportToGDrive} = useGoogleDrive();
 
-  const onCheckedChange = isChecked => {
-    setDarkMode(isChecked);
-  };
+  // const onCheckedChange = isChecked => {
+  //   setDarkMode(isChecked);
+  // };
 
   const handleLogin = async () => {
     try {
       let userInfo = await signInWithGoogle();
       // console.log('userInfo', userInfo);
-      store.user.updateUser(userInfo?.user);
+      if (userInfo?.user) {
+        store?.user?.updateUser(userInfo.user);
+      }
     } catch (error) {
       // console.log(error);
     }
@@ -75,12 +77,8 @@ const Settings: React.FC<SettingsType> = observer(({navigation}) => {
     return email.length > 20 ? temp : email;
   };
 
-  const navigateTo = screen => {
-    navigation.navigate(screen);
-  };
-
-  const isLogined = store.user._id !== '';
-  const isSecured = store.user.isSecure;
+  const isLogined = store?.user?._id !== '';
+  // const isSecured = store.user.isSecure;
 
   const avatar = store?.user?.photo
     ? {uri: store.user.photo}
@@ -100,8 +98,8 @@ const Settings: React.FC<SettingsType> = observer(({navigation}) => {
                 <Button title="Login" onPress={handleLogin} />
               ) : (
                 <>
-                  <Text style={styles.name}>{store.user.name}</Text>
-                  <Text>{formatEmail(store.user.email)}</Text>
+                  <Text style={styles.name}>{store?.user?.name || ''}</Text>
+                  <Text>{formatEmail(store?.user?.email) || ''}</Text>
                 </>
               )}
             </View>
@@ -139,7 +137,7 @@ const Settings: React.FC<SettingsType> = observer(({navigation}) => {
                     </View>
                   )}
                 </TouchableOpacity>
-                {store.settings.lastSynced !== '' && (
+                {store?.settings?.lastSynced !== '' && (
                   <TouchableOpacity
                     onPress={() => store.settings.removeLastSynced()}>
                     <Text style={styles.lastSyncedText}>

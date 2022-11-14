@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders SettingsMenuItem 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    testID="menuItem"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingVertical": 10,
+          }
+        }
+      >
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+      <View
+        appearance="default"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#EDF1F7",
+              "height": 1,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

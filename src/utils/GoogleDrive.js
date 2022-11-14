@@ -41,7 +41,8 @@ const LOCAL_NOTIFICATION_MESSAGES = {
 };
 
 /**
- * useGoogleDrive
+ * useGoogleDrive Hook
+ * returns {Object} {status, signInWithGoogle, signOut, exportToGDrive}
  */
 export const useGoogleDrive = () => {
   const [status, setstatus] = useState(STATUSES.initial);

@@ -62,4 +62,12 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+
+# ENV
 .env
+
+# BUNDLE
+android/app/src/main/assets/index.android.bundle
+
+# Jest
+.jest/cache

@@ -5,6 +5,7 @@ import * as eva from '@eva-design/eva';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {SafeAreaView} from 'react-native-safe-area-context';
+// import RNBootSplash from 'react-native-bootsplash';
 
 import rootStore, {MSTContext} from './src/mst';
 
@@ -12,6 +13,9 @@ import rootStore, {MSTContext} from './src/mst';
 import AppNavigation from './src/navigation/AppNavigation';
 
 const App = () => {
+  // React.useEffect(() => {
+  //   RNBootSplash.hide();
+  // }, []);
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <>

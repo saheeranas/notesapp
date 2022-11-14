@@ -1,46 +1,52 @@
+import {SnapshotIn, SnapshotOut} from 'mobx-state-tree';
+import type {StackScreenProps} from '@react-navigation/stack';
+
+// Stores
+import DiaryEntry from '../mst/DiaryEntry';
+import User from '../mst/User';
+
 /**
  * Header
  */
 
 export interface HeaderType {
   hideBack?: boolean;
-  navigation: any;
-  title: string;
+  navigation?: any;
+  title?: string;
   style?: any;
   onPressMenu?: () => void;
 }
 
 /**
+ * Main Stack Navigator
+ */
+
+type RootStackParamList = {
+  Entries: undefined;
+  EntrySingle: {id: string | null};
+  Settings: undefined;
+};
+
+/**
  * Entries screen
  */
 
-export interface EntriesType {
-  navigation: any;
-}
+export type EntriesProps = StackScreenProps<RootStackParamList, 'Entries'>;
 
 /**
  * EntrySingle screen
  */
 
-export interface EntrySingleType {
-  navigation: any;
-}
-
-/**
- * Jump screen
- */
-
-export interface JumpType {
-  navigation: any;
-}
+export type EntrySingleProps = StackScreenProps<
+  RootStackParamList,
+  'EntrySingle'
+>;
 
 /**
  * Settings screen
  */
 
-export interface SettingsType {
-  navigation: any;
-}
+export type SettingsProps = StackScreenProps<RootStackParamList, 'Settings'>;
 
 /**
  * Password screen
@@ -49,3 +55,19 @@ export interface SettingsType {
 export interface PasswordType {
   navigation: any;
 }
+
+/**
+ * MobX State Tree
+ * Derive TS interface from MST Model. So that, no need to declare in two places
+ * Refer MST documentation for more details.
+ * ( MST Model --> TypeScript interface )
+ */
+// Entry Incoming Prop
+export interface EntrySnapInType extends SnapshotIn<typeof DiaryEntry> {}
+// Entry Outgoing Prop
+export interface EntrySnapOutType extends SnapshotOut<typeof DiaryEntry> {}
+
+// User Incoming Prop
+export interface UserSnapInType extends SnapshotIn<typeof User> {}
+// User Outgoing Prop
+export interface UserSnapOutType extends SnapshotOut<typeof User> {}

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EntryCard without desc 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFAA00",
+        "borderColor": "#FFAA00",
+        "borderRadius": 23,
+        "borderWidth": 0,
+        "bottom": 16,
+        "elevation": 1,
+        "flexDirection": "row",
+        "height": 46,
+        "justifyContent": "center",
+        "minHeight": 40,
+        "minWidth": 40,
+        "opacity": 1,
+        "padding": 0,
+        "paddingHorizontal": 10,
+        "paddingVertical": 12,
+        "position": "absolute",
+        "right": 16,
+        "width": 46,
+        "zIndex": 1,
+      }
+    }
+    testID="fab_button"
+  >
+    <View
+      collapsable={false}
+      style={
+        Object {
+          "transform": Array [
+            Object {
+              "scale": 1,
+            },
+          ],
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="24"
+        bbWidth="24"
+        fill="#fff"
+        focusable={false}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "height": 24,
+              "width": 24,
+            },
+            Object {
+              "flex": 0,
+              "height": 24,
+              "width": 24,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+      >
+        <RNSVGGroup
+          fill={
+            Object {
+              "payload": 4294967295,
+              "type": 0,
+            }
+          }
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGGroup>
+            <RNSVGGroup>
+              <RNSVGRect
+                height="24"
+                matrix={
+                  Array [
+                    -1,
+                    1.2246467991473532e-16,
+                    -1.2246467991473532e-16,
+                    -1,
+                    24,
+                    24,
+                  ]
+                }
+                opacity={0}
+                width="24"
+                x="0"
+                y="0"
+              />
+              <RNSVGPath
+                d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2z"
+              />
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+</View>
+`;

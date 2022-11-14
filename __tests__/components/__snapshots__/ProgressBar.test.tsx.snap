@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ProgressBar with default color 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityValue={
+      Object {
+        "max": 100,
+        "min": 0,
+        "now": 0,
+      }
+    }
+    accessible={true}
+    style={
+      Object {
+        "backgroundColor": "#ccc",
+        "borderRadius": 15,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#34c759",
+            "borderRadius": 15,
+            "height": 8,
+          },
+          Object {
+            "backgroundColor": "#34c759",
+            "width": "0%",
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;

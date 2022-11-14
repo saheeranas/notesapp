@@ -4,20 +4,23 @@ import {StyleSheet, View, Pressable} from 'react-native';
 import {Text} from '@ui-kitten/components';
 import dayjs from 'dayjs';
 
-interface EntryCardProps {
-  item: any;
-  onPress: () => void;
+import {EntrySnapOutType} from '../types/types';
+
+interface EntryCardProps
+  extends Partial<Pick<EntrySnapOutType, 'desc' | 'modifiedAt'>> {
+  onPress?: () => void;
 }
 
 const EntryCard: React.FC<EntryCardProps> = ({
-  item: {desc, modifiedAt},
+  desc = '',
+  modifiedAt,
   onPress,
 }) => {
-  const dayStr = dayjs(modifiedAt).format('MMM D h:mm A');
+  const dayStr = dayjs(modifiedAt).format('MMM D h:mm A') || '';
   return (
     <Pressable style={styles.listItem} onPress={onPress}>
       <View style={styles.listItemInner}>
-        <Text style={styles.desc}>{desc.substr(0, 50)}</Text>
+        <Text style={styles.desc}>{desc.substring(0, 50)}</Text>
         <View style={styles.dateWrp}>
           <Text style={styles.dayStr}>{dayStr}</Text>
         </View>

@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EntryCard without desc 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginBottom": 10,
+        "width": "48%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "#fff",
+          "borderRadius": 5,
+          "paddingHorizontal": 16,
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text
+        appearance="default"
+        category="p1"
+        style={
+          Array [
+            Object {
+              "color": "#222B45",
+              "fontFamily": "System",
+              "fontSize": 15,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#333333",
+              "flex": 1,
+              "fontSize": 14,
+              "maxHeight": 40,
+              "paddingBottom": 8,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderTopColor": "#ccc",
+            "borderTopWidth": 0.5,
+            "marginBottom": 3,
+            "paddingTop": 8,
+          }
+        }
+      >
+        <Text
+          appearance="default"
+          category="p1"
+          style={
+            Array [
+              Object {
+                "color": "#222B45",
+                "fontFamily": "System",
+                "fontSize": 15,
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#333333",
+                "fontSize": 10,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+          Jan 20 4:18 AM
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

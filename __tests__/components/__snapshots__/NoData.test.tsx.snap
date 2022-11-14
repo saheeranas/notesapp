@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders NoData without any custom text 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      appearance="default"
+      category="p2"
+      status="basic"
+      style={
+        Array [
+          Object {
+            "color": "#222B45",
+            "fontFamily": "System",
+            "fontSize": 13,
+            "fontWeight": "400",
+          },
+          undefined,
+        ]
+      }
+    >
+      No Data
+    </Text>
+  </View>
+</View>
+`;
